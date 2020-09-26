@@ -1,5 +1,6 @@
 package com.techass.prodcutpriceoptimizer.api;
 
+import com.techass.prodcutpriceoptimizer.exception.ApiRequestException;
 import com.techass.prodcutpriceoptimizer.models.Order;
 import com.techass.prodcutpriceoptimizer.models.Product;
 import com.techass.prodcutpriceoptimizer.models.ProductOrder;
@@ -30,8 +31,9 @@ public class ProductController {
     }
 
     @GetMapping(value="/price/{units}")
-    public List<ProductPrice> getPriceProductsOnUnits(@PathVariable int units){
-        return productService.getProductPriceOnUnits(units);
+    public List<ProductPrice> getPriceProductsOnUnits(@PathVariable int units) {
+
+       return productService.getProductPriceOnUnits(units);
     }
 
     @PostMapping(value="/price")

@@ -1,5 +1,6 @@
 package com.techass.prodcutpriceoptimizer.services;
 
+import com.techass.prodcutpriceoptimizer.exception.ApiRequestException;
 import com.techass.prodcutpriceoptimizer.models.Order;
 import com.techass.prodcutpriceoptimizer.models.Product;
 import com.techass.prodcutpriceoptimizer.models.ProductOrder;
@@ -34,6 +35,8 @@ public class ProductService {
     }
 
     public double getPrice(Order order){
+
+
         List<ProductOrder> productOrderList  = order.getOrder() ;
 
         double price=0;
