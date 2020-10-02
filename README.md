@@ -19,3 +19,8 @@
 
 ## Run Tests ##
 1. Open command prompt or terminal in root folder and give the command ``./gradlew test`` 
+
+## Api Documentation ##
+* Swagger 2 is integrated for the api documentation.
+1. Run the project
+1. Use ``http://localhost:<server.port>/swagger-ui.html`` to access the documentation
