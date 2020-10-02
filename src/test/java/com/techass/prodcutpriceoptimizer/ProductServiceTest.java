@@ -45,14 +45,11 @@ public class ProductServiceTest {
         // test for carton price
         List<ProductOrder> productOrderList = new ArrayList<>();
         ProductOrder prodOd1 = new ProductOrder(1,20);
-
         productOrderList.add(prodOd1);
-//        productOrderList.add(prodOd2);
         Order order = new Order(2,productOrderList);
         assertEquals(175,this.productService.getPrice(order));
 
         // test for single units
-
         productOrderList = new ArrayList<>();
         prodOd1 = new ProductOrder(1,21);
         productOrderList.add(prodOd1);
@@ -73,13 +70,13 @@ public class ProductServiceTest {
         Order order4 = new Order(2,productOrderList);
         assertEquals(175*3 - 3*0.1*175 +175*1.3,this.productService.getPrice(order4));
 
-//      test for combined products considering all the cases
+        // test for combined products considering all the cases
         productOrderList = new ArrayList<>();
         prodOd1 = new ProductOrder(1,61);
         ProductOrder prodOd2 = new ProductOrder(2,16);
         productOrderList.add(prodOd1);
         productOrderList.add(prodOd2);
         Order order5 = new Order(2,productOrderList);
-        assertEquals(175*3 - 3*0.1*175+175*1.3+ 825*3- 3*0.1*825+825*1.3,this.productService.getPrice(order5));
+        assertEquals((175*3 - 3*0.1*175+175*1.3)+ (825*3- 3*0.1*825+825*1.3),this.productService.getPrice(order5));
     }
 }

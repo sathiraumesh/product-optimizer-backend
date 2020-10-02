@@ -37,7 +37,7 @@ public class ProductController {
     }
 
     @PostMapping(value="/price")
-    public double getPrice( @RequestBody Order order){
+    public double calculatePriceForOrder( @RequestBody Order order){
 
         return productService.getPrice(order);
 
