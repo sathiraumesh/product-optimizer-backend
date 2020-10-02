@@ -49,7 +49,6 @@ public class ProductService {
 
                 Product prod = product.get();
                 price += calculatePriceOrderedUnits(prod.getUnitsPerCarton(),prod.getCartonPrice(),item.getUnits());
-                System.out.println(prod.getUnitsPerCarton());
 
             }
         }
