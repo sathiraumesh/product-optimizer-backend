@@ -1,6 +1,5 @@
 package com.techass.prodcutpriceoptimizer.services;
 
-import com.techass.prodcutpriceoptimizer.exception.ApiRequestException;
 import com.techass.prodcutpriceoptimizer.models.Order;
 import com.techass.prodcutpriceoptimizer.models.Product;
 import com.techass.prodcutpriceoptimizer.models.ProductOrder;
@@ -8,19 +7,19 @@ import com.techass.prodcutpriceoptimizer.models.ProductPrice;
 import com.techass.prodcutpriceoptimizer.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Service
 public class ProductService {
 
     @Autowired
     public final ProductRepository productRepository;
 
-    private final double discount = 0.1;
-    private final double manualLabourCostPercentage = 0.3;
+
 
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
@@ -65,6 +64,7 @@ public class ProductService {
         double totalPrice =0;
         int cartons = orderedUnits/unitsPerCarton;
         int singleUnits = orderedUnits%unitsPerCarton;
+        double pricePerSingleUnit = pricePerCarton/unitsPerCarton;
 
 
         // calcualte carton price
@@ -73,11 +73,11 @@ public class ProductService {
         // apply discounts
 
         if (cartons>=3){
-            totalPrice = totalPrice- cartons*discount*pricePerCarton;
+            totalPrice = totalPrice- cartons* Constants.DISCOUNT*pricePerCarton;
         }
         // calculate single unit price
         if(singleUnits>0){
-            totalPrice =totalPrice+(pricePerCarton*manualLabourCostPercentage+pricePerCarton);
+            totalPrice =totalPrice+(pricePerSingleUnit*singleUnits*(Constants.MANUAL_LABOUR_COST_PERCENTAGE+1));
         }
 
         return totalPrice;

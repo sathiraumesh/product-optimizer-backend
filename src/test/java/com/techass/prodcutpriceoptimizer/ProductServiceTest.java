@@ -18,13 +18,27 @@ public class ProductServiceTest {
 
     @Autowired
     ProductService productService;
-    @Test
+    @Test()
     public void calculatePriceOrderedUnitsTest() throws Exception{
         // test with 0 values
-        assertEquals(0, this.productService.calculatePriceOrderedUnits(0,0,0) );
+        double discountPercentage =0.1;
+        double additionalCostPerUnitOrder =1.3;
+
+        double pricePerCarton=0.0;
+        int unitsPerCartoon = 0;
+        int orderedUnits = 0;
+        double totalPrice =0;
+
+        assertEquals(totalPrice, this.productService.calculatePriceOrderedUnits(unitsPerCartoon,pricePerCarton,orderedUnits) );
+
 
         // test for cartons without discount and single units
-        assertEquals(10, this.productService.calculatePriceOrderedUnits(10,10,10) );
+        pricePerCarton=10;
+        unitsPerCartoon = 10;
+        orderedUnits = 10;
+        totalPrice = (orderedUnits/pricePerCarton)*pricePerCarton;
+
+        assertEquals(totalPrice, this.productService.calculatePriceOrderedUnits(unitsPerCartoon,pricePerCarton,orderedUnits) );
 
         // test for carton and single units
         assertEquals(10+13,this.productService.calculatePriceOrderedUnits(10,10,11) );
