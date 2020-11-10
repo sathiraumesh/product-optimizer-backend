@@ -1,9 +1,12 @@
 package com.techass.prodcutpriceoptimizer.repository;
 
 import com.techass.prodcutpriceoptimizer.models.Product;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface ProductRepository extends JpaRepository<Product,Long> {
+import java.util.List;
+
+public interface ProductRepository {
+
+    public List<Product> findAll();
+
+    public Product findById(long id);
 }

@@ -1,35 +1,27 @@
 package com.techass.prodcutpriceoptimizer.services;
 
-import com.techass.prodcutpriceoptimizer.models.Order;
-import com.techass.prodcutpriceoptimizer.models.Product;
-import com.techass.prodcutpriceoptimizer.models.ProductOrder;
-import com.techass.prodcutpriceoptimizer.models.ProductPrice;
+import com.techass.prodcutpriceoptimizer.models.*;
 import com.techass.prodcutpriceoptimizer.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {
 
+
     @Autowired
-    public final ProductRepository productRepository;
+    private ProductRepository productRepository;
 
 
-
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
 
     public List<Product> getAllProducts(){
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProductById(long id){
+    public Product getProductById(long id){
         return productRepository.findById(id);
     }
 
@@ -42,14 +34,12 @@ public class ProductService {
 
         for (ProductOrder item:productOrderList) {
 
-            Optional<Product> product = getProductById(item.getProductId());
+            Product product = getProductById(item.getProductId());
 
-            if(product.isPresent()){
 
-                Product prod = product.get();
-                price += calculatePriceOrderedUnits(prod.getUnitsPerCarton(),prod.getCartonPrice(),item.getUnits());
+                price += calculatePriceOrderedUnits(product.getUnitsPerCarton(),product.getCatrtonPrice(),item.getUnits());
 
-            }
+
         }
         return price;
     }
@@ -87,9 +77,10 @@ public class ProductService {
 
       List<Product> productList = getAllProducts();
       List<ProductPrice> productPriceList = new ArrayList<>();
+
         if (productList.size() > 0) {
             for (Product product:productList) {
-           double price = calculatePriceOrderedUnits(product.getUnitsPerCarton(),product.getCartonPrice(),units);
+           double price = calculatePriceOrderedUnits(product.getUnitsPerCarton(),product.getCatrtonPrice(),units);
                 ProductPrice temProdPrice = new ProductPrice(product.getId(),product.getName(),price);
                 productPriceList.add(temProdPrice);
             }

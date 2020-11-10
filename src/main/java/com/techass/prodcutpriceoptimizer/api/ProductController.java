@@ -1,13 +1,8 @@
 package com.techass.prodcutpriceoptimizer.api;
 
-import com.techass.prodcutpriceoptimizer.exception.ApiRequestException;
-import com.techass.prodcutpriceoptimizer.models.Order;
-import com.techass.prodcutpriceoptimizer.models.Product;
-import com.techass.prodcutpriceoptimizer.models.ProductOrder;
-import com.techass.prodcutpriceoptimizer.models.ProductPrice;
+import com.techass.prodcutpriceoptimizer.models.*;
 import com.techass.prodcutpriceoptimizer.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

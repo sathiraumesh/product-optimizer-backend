@@ -1,36 +1,29 @@
 package com.techass.prodcutpriceoptimizer.models;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name="productlist")
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private  long id ;
 
-    @Column(name="name")
+
     private  String name;
 
-    @Column(name="upc")
+
     private  int unitsPerCarton;
 
-    @Column(name="price")
-    private  double cartonPrice;
+
+    private  double catrtonPrice;
 
     public Product() {
-        super();
     }
 
-    public Product( long id,  String name,  int unitsPerCarton,  double cartonPrice) {
+    public Product(long id, String name, int unitsPerCarton, double catrtonPrice) {
         this.id = id;
         this.name = name;
         this.unitsPerCarton = unitsPerCarton;
-        this.cartonPrice = cartonPrice;
+        this.catrtonPrice = catrtonPrice;
     }
-
-
 
     public long getId() {
         return id;
@@ -44,7 +37,23 @@ public class Product {
         return unitsPerCarton;
     }
 
-    public double getCartonPrice() {
-        return cartonPrice;
+    public double getCatrtonPrice() {
+        return catrtonPrice;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUnitsPerCarton(int unitsPerCarton) {
+        this.unitsPerCarton = unitsPerCarton;
+    }
+
+    public void setCatrtonPrice(double catrtonPrice) {
+        this.catrtonPrice = catrtonPrice;
     }
 }
