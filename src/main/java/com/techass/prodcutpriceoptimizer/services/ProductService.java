@@ -25,6 +25,7 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
+
     public double getPrice(Order order){
 
 
@@ -37,7 +38,7 @@ public class ProductService {
             Product product = getProductById(item.getProductId());
 
 
-                price += calculatePriceOrderedUnits(product.getUnitsPerCarton(),product.getCatrtonPrice(),item.getUnits());
+                price += calculatePriceOrderedUnits(product.getUnitsPerCarton(),product.getCartonPrice(),item.getUnits());
 
 
         }
@@ -80,7 +81,7 @@ public class ProductService {
 
         if (productList.size() > 0) {
             for (Product product:productList) {
-           double price = calculatePriceOrderedUnits(product.getUnitsPerCarton(),product.getCatrtonPrice(),units);
+           double price = calculatePriceOrderedUnits(product.getUnitsPerCarton(),product.getCartonPrice(),units);
                 ProductPrice temProdPrice = new ProductPrice(product.getId(),product.getName(),price);
                 productPriceList.add(temProdPrice);
             }

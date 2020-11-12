@@ -2,6 +2,9 @@ package com.techass.prodcutpriceoptimizer.models;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+
+@Data
 public class ProductPrice {
 
     private final long id;
@@ -16,15 +19,4 @@ public class ProductPrice {
         this.price = price;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
 }

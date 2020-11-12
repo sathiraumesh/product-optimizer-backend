@@ -1,10 +1,13 @@
 package com.techass.prodcutpriceoptimizer.models;
 
 
+import lombok.Data;
+
+@Data
 public class Product {
 
 
-    private  long id ;
+    public  long id ;
 
 
     private  String name;
@@ -13,47 +16,17 @@ public class Product {
     private  int unitsPerCarton;
 
 
-    private  double catrtonPrice;
+    private  double cartonPrice;
 
     public Product() {
     }
 
-    public Product(long id, String name, int unitsPerCarton, double catrtonPrice) {
+    public Product(long id, String name, int unitsPerCarton, double cartonPrice) {
         this.id = id;
         this.name = name;
         this.unitsPerCarton = unitsPerCarton;
-        this.catrtonPrice = catrtonPrice;
+        this.cartonPrice = cartonPrice;
     }
 
-    public long getId() {
-        return id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public int getUnitsPerCarton() {
-        return unitsPerCarton;
-    }
-
-    public double getCatrtonPrice() {
-        return catrtonPrice;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setUnitsPerCarton(int unitsPerCarton) {
-        this.unitsPerCarton = unitsPerCarton;
-    }
-
-    public void setCatrtonPrice(double catrtonPrice) {
-        this.catrtonPrice = catrtonPrice;
-    }
 }

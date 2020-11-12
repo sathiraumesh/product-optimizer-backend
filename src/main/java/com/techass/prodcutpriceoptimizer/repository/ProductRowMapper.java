@@ -13,7 +13,7 @@ public class ProductRowMapper implements RowMapper<Product> {
         Product product = new Product();
         product.setId(rs.getLong("id"));
         product.setName(rs.getString("name"));
-        product.setCatrtonPrice(rs.getDouble("price"));
+        product.setCartonPrice(rs.getDouble("price"));
         product.setUnitsPerCarton(rs.getInt("upc"));
         return product;
     }

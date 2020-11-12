@@ -2,8 +2,9 @@ package com.techass.prodcutpriceoptimizer.repository;
 
 import com.techass.prodcutpriceoptimizer.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,21 +13,21 @@ import java.util.List;
 public class ProductRepositoryImp implements ProductRepository {
 
     @Autowired
-    private  JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 
 
 
     @Override
     public List<Product> findAll() {
-         return jdbcTemplate.query("select * from productlist;",
-                new ProductRowMapper());
+        String query = "select * from productlist;";
+         return namedParameterJdbcTemplate.query(query, new ProductRowMapper());
     }
 
     @Override
     public Product findById(long id) {
-        return jdbcTemplate.queryForObject("select * from productlist where id=?;",
-                new Object[]{id},
-                new BeanPropertyRowMapper<>(Product.class));
+        String query = "select * from productlist where id=:id;";
+        SqlParameterSource namedParameters = new MapSqlParameterSource("id",Long.valueOf(id));
+        return namedParameterJdbcTemplate.queryForObject(query,namedParameters,new ProductRowMapper());
     }
 }
