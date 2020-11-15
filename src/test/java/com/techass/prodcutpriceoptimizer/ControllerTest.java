@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class ControllerTest {
 
     @Test
-    public static void run(){
-
+    public  void run(){
+        assert(true);
     }
 }
