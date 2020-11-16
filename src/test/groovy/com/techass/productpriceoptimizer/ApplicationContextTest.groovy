@@ -14,7 +14,7 @@ class ApplicationContextTest extends Specification {
     @Autowired
     ApplicationContext context
     def "when context is loaded" () {
-        expect:
+        expect:"Expect the context to be not null"
          context !=null
 
     }

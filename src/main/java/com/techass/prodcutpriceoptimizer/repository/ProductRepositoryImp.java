@@ -9,13 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Repository("ProductDao")
 public class ProductRepositoryImp implements ProductRepository {
 
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
-
 
 
     @Override
