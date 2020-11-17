@@ -2,13 +2,14 @@ package com.techass.productpriceoptimizer
 
 import com.techass.prodcutpriceoptimizer.Application
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootContextLoader
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.ApplicationContext
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
 
-@SpringBootTest(classes = Application.class)
+@ContextConfiguration(loader = SpringBootContextLoader.class, classes = [Application.class])
 class ApplicationContextTest extends Specification {
 
     @Autowired
