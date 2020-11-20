@@ -12,9 +12,13 @@ import java.util.List;
 @Repository("ProductDao")
 public class ProductRepositoryImp implements ProductRepository {
 
-    @Autowired
+
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    @Autowired
+    public ProductRepositoryImp(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
 
     @Override
     public List<Product> findAll() {
