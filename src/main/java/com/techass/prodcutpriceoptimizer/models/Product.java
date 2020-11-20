@@ -3,10 +3,14 @@ package com.techass.prodcutpriceoptimizer.models;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Data
+@Entity
 public class Product {
 
-
+    @Id
     public  long id ;
 
 
@@ -27,6 +31,7 @@ public class Product {
         this.unitsPerCarton = unitsPerCarton;
         this.cartonPrice = cartonPrice;
     }
+
 
 
 }
