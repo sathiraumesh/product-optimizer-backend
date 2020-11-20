@@ -1,5 +1,5 @@
 
-CREATE TABLE productlist (
+CREATE TABLE  IF NOT EXISTS productlist (
     id bigint NOT NULL,
     price double precision,
     name character varying(255),

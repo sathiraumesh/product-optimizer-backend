@@ -22,50 +22,38 @@ import spock.lang.Specification
 
 
 @JdbcTest
-
 @ContextConfiguration(loader = SpringBootContextLoader.class, classes = [ProductRepositoryImp.class])
+//@Sql("classpath:data.sql")
 class ProductDaoTest extends Specification {
 
+    @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
     private ProductRepositoryImp productRepositoryImp;
 
-    @Autowired
-    public ControllerTest(NamedParameterJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-        productRepositoryImp = new ProductRepositoryImp(jdbcTemplate);
 
-    }
-//    @Autowired
-//    ApplicationContext context;
-//    @Shared
-//    def ProductRepository productRepository
-//
     def setup(){
-       productRepositoryImp.createTable()
+        productRepositoryImp = new ProductRepositoryImp(jdbcTemplate);
     }
-//
-    def "product service bean loading test  "(){
 
+    def "product service bean loading test  "(){
+        List<Product> products = productRepositoryImp.findAll();
         expect:"Expect the ProductService Bean is loaded when the context loads"
-        productRepositoryImp!=null
+        products!=null
     }
-//
-//    def "find product by ID Test"(){
-//
-//        expect:"Expect product service test to be not null for an ID"
-//        productRepository.findById(1)!==null;
-//
-//        when:"The id is not valid"
-//        productRepository.findById(0);
-//        then:
-//        thrown RuntimeException
-//
-//
-//    }
-//
-    def "get all products  Test"(){
-        productRepositoryImp.createTable()
+
+    def "find product by ID Test"(){
+        Product product = productRepositoryImp.findById(1);
+        println product.name
+        expect:"Expect product service test to be not null for an ID"
+        product !=null
+
+        when:"The id is not valid"
+        productRepositoryImp.findById(0);
+        then:
+        thrown RuntimeException
+
+
     }
 
 }

@@ -18,9 +18,7 @@ import java.util.List;
 
 
 @JdbcTest
-//@TestExecutionListeners(listeners = { SqlScriptsTestExecutionListener.class })
-//@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-//@Sql(scripts = {"file:/Users/sathiraumesh/Desktop/TechnicalAssesment/prodcut-price-optimizer/src/main/resources/data.sql"})
+@Sql("classpath:data.sql")
 public class ControllerTest {
 
     private NamedParameterJdbcTemplate jdbcTemplate;
