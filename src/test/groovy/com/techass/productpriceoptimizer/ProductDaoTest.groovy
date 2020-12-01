@@ -1,12 +1,15 @@
 package com.techass.productpriceoptimizer
 
 import com.techass.prodcutpriceoptimizer.Application
+import com.techass.prodcutpriceoptimizer.api.ProductController
+import com.techass.prodcutpriceoptimizer.config.DaoConfiguration
 import com.techass.prodcutpriceoptimizer.models.Product
 import com.techass.prodcutpriceoptimizer.repository.ProductRepository
 import com.techass.prodcutpriceoptimizer.repository.ProductRepositoryImp
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.context.SpringBootContextLoader
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.ApplicationContext
@@ -23,17 +26,16 @@ import spock.lang.Specification
 
 @JdbcTest
 @ContextConfiguration(loader = SpringBootContextLoader.class, classes = [ProductRepositoryImp.class])
-//@Sql("classpath:data.sql")
+@Sql("classpath:data.sql")
 class ProductDaoTest extends Specification {
 
-    @Autowired
-    private NamedParameterJdbcTemplate jdbcTemplate;
 
+    @Autowired
     private ProductRepositoryImp productRepositoryImp;
 
 
     def setup(){
-        productRepositoryImp = new ProductRepositoryImp(jdbcTemplate);
+
     }
 
     def "product service bean loading test  "(){
